@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sql>
+    <userInfoSelf>
+        select id,create_time,login_name,user_name,phone_number,img
+        from sys_user where  login_name='{%=loginName%}' and password=md5({%=password%})
+    </userInfoSelf>
+    <querySysUser>
+        select id,login_name,create_time,user_name from sys_user where 1=1 {%=sql%}  limit {%=startLine%},{%=pagesize%}
+    </querySysUser>
+    <querySysUserCount>
+        select count(1) count from sys_user where 1=1 {%=sql%}
+    </querySysUserCount>
+    <updateUser>
+        update sys_user set user_name='{%=nickname%}',img='{%=filename%}',phone_number='{%=phone%}' where id={%=id%}
+    </updateUser>
+
+    <selectUser>
+        select * from sys_user where id={%=id%}
+    </selectUser>
+</sql>
